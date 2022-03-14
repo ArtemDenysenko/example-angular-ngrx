@@ -1,0 +1,56 @@
+<div class="row pt-3">
+  <div class="col">
+    <h3>Add to Store:</h3>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="increaseCount()"
+    >
+      Count: <span class="badge bg-secondary">{{ testService.count$ | async }}</span>
+    </button>
+  </div>
+</div>
+
+<div class="row pt-3">
+  <div class="col">
+    <h3>Use Effect:</h3>
+    <div class="d-flex align-items-center justify-content-between">
+
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="switchSpinner()"
+      >{{ testService.spinnerLabel$ | async }}</button>
+
+      <div *ngIf="testService.showSpinner$ | async">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row pt-3">
+  <div class="col">
+    <h3>Add Data:</h3>
+    <div class="mb-3">
+      <label for="name" class="form-label">User name is: {{ testService.username$ | async }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter name"
+        [(ngModel)]="name"
+      >
+    </div>
+    <div class="align-items-center">
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="setName()"
+      >Add</button>
+    </div>
+  </div>
+</div>
