@@ -12,7 +12,7 @@ export class NgrxTestService {
   }
 
   get state$(): Observable<fromTest.State> {
-    return this.store.select('test');
+    return this.store.select(fromTest.getState);
   }
 
   get count$(): Observable<number> {

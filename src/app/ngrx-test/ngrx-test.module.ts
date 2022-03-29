@@ -7,7 +7,7 @@ import * as fromStore from './ngrx-test.reducer';
 import {NgrxTestService} from "./ngrx-test.service";
 import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
-import {NgrxTestEffects} from "./ngrx-test-effects";
+import {NgrxTestEffects} from "./ngrx-test.effects";
 
 @NgModule({
   declarations: [NgrxTestComponent, NgrxEntitiesComponent],

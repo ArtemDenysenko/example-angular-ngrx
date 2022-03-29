@@ -15,10 +15,12 @@ export const initialState: State = {
 
 export const testReducer = createReducer(
   initialState,
-  on(actions.ngrxTestIncrease, state => ({
-    ...state,
-    count: state.count + 1,
-  })),
+  on(actions.ngrxTestIncrease, state => {
+    return {
+      ...state,
+      count: state.count + 1,
+    };
+  }),
   on(actions.ngrxTestAddName, (state, action) => ({
     ...state,
     username: action.name
