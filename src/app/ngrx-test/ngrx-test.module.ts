@@ -8,12 +8,14 @@ import {NgrxTestService} from "./ngrx-test.service";
 import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import {NgrxTestEffects} from "./ngrx-test.effects";
+import {IFrameTestComponent} from "../iframe-test/iframe-test.component";
 
 @NgModule({
-  declarations: [NgrxTestComponent, NgrxEntitiesComponent],
+  declarations: [NgrxTestComponent, NgrxEntitiesComponent, IFrameTestComponent],
   exports: [
     NgrxTestComponent,
-    NgrxEntitiesComponent
+    NgrxEntitiesComponent,
+    IFrameTestComponent,
   ],
   imports: [
     CommonModule,
