@@ -1,3 +1,87 @@
 <div class="iFrameTest container pt-3">
-  <iframe src="http://localhost:3000" frameborder="0"></iframe>
+
+  <div class="row pt-3">
+    <div class="col">
+      <h3>Count From Child:</h3>
+      Count: <span class="badge bg-secondary">{{count}}</span>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col">
+      <h3>Send Message to Child</h3>
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="sendMessage()"
+      >
+        Send to Child
+      </button>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-12 d-flex justify-content-start">
+        <div class="col iFrameTest__buttons">
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="iFrameType = 'vue'"
+          >
+            Show same origin
+          </button>
+
+          <button
+            class="btn btn-primary ml-1"
+            type="button"
+            (click)="iFrameType = 'srcdoc'"
+          >
+            Show srcdoc
+          </button>
+
+          <button
+            class="btn btn-primary ml-1"
+            type="button"
+            (click)="iFrameType = 'external'"
+          >
+            Show external
+          </button>
+        </div>
+    </div>
+
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-12" [hidden]="iFrameType !== 'vue'">
+      <h3>IFrame (same origin)</h3>
+      <iframe
+        #childFrame
+        src="http://localhost:3000"
+        frameborder="0"
+        sandbox="allow-same-origin allow-scripts"
+        allow="fullscreen"
+      ></iframe>
+    </div>
+
+    <div class="col-12" [hidden]="iFrameType !== 'srcdoc'">
+      <h3>IFrame (srcdoc)</h3>
+      <iframe
+        srcdoc="<html><body>The content you see here will never be affected by the CSS of its parent container. It supposed to be rendered in black on a white background.</body></html>"
+        frameborder="0"
+      ></iframe>
+    </div>
+
+    <div class="col-12" [hidden]="iFrameType !== 'external'">
+      <h3>IFrame (external origin allowed)</h3>
+      <iframe
+        #alienFrame
+        sandbox="allow-same-origin allow-scripts allow-presentation"
+        src="https://www.w3schools.com/tags/att_iframe_sandbox.asp"
+      ></iframe>
+    </div>
+
+<!--    https://www.youtube.com/embed/gv7hFegk14o -->
+
+  </div>
+
 </div>

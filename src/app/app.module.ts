@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {NgrxTestModule} from "./ngrx-test/ngrx-test.module";
-import {NgrxEntitiesModule} from "./ngrx-entities/ngrx-entities.module";
 import {StoreModule} from "@ngrx/store";
 import {metaReducers, reducers} from "./app.store";
 import {EffectsModule} from "@ngrx/effects";
+import {IframeTestModule} from "./iframe-test/iframe-test.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import {EffectsModule} from "@ngrx/effects";
   imports: [
     BrowserModule,
     NgrxTestModule,
-    NgrxEntitiesModule,
+    IframeTestModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: { strictActionImmutability: true, strictStateImmutability: true },
