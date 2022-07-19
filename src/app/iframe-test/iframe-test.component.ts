@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'app-iframe-test',
@@ -7,11 +7,8 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 })
 export class IFrameTestComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('childFrame')
-  childFrame: ElementRef;
-
-  @ViewChild('alienFrame')
-  alienFrame: ElementRef;
+  @ViewChildren('childFrame')
+  childFrames: QueryList<ElementRef>;
 
   iFrameType = 'vue';
   count: number = 0;
@@ -24,25 +21,19 @@ export class IFrameTestComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.loadChildIframe();
-  }
-
-  loadChildIframe(){
-    const iframe = this.childFrame.nativeElement.contentWindow;
-    iframe.onload = function() {
-      console.log("IFrame Loaded");
-    };
-    iframe.onerror = function() {
-      console.log("Error from clild iframe!");
-    };
-    console.log(this.childFrame);
     this.listenToChildEvents();
   }
 
   sendMessage(){
     const eventName = 'increase-count';
     const targetOrigin = 'http://localhost:3000';
-    this.childFrame.nativeElement.contentWindow.postMessage(eventName, targetOrigin);
+    this.childFrames.forEach(element => {
+      if(element.nativeElement.contentWindow) {
+        element.nativeElement.contentWindow.postMessage(eventName, targetOrigin);
+      } else {
+        console.error('Element has no contentWindow');
+      }
+    })
   }
 
   onLoad() {

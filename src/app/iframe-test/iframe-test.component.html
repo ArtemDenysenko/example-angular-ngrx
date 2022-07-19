@@ -34,6 +34,22 @@
           <button
             class="btn btn-primary ml-1"
             type="button"
+            (click)="iFrameType = 'object'"
+          >
+            Show object tag
+          </button>
+
+          <button
+            class="btn btn-primary ml-1"
+            type="button"
+            (click)="iFrameType = 'embed'"
+          >
+            Show embed tag
+          </button>
+
+          <button
+            class="btn btn-primary ml-1"
+            type="button"
             (click)="iFrameType = 'srcdoc'"
           >
             Show srcdoc
@@ -78,6 +94,19 @@
         sandbox="allow-same-origin allow-scripts allow-presentation"
         src="https://www.w3schools.com/tags/att_iframe_sandbox.asp"
       ></iframe>
+    </div>
+
+    <div class="col-12" [hidden]="iFrameType !== 'object'">
+      <h3>Object tag</h3>
+      <object #childFrame data="http://localhost:3000" width="400" height="300" type="text/html">
+        Alternative Content
+      </object>
+    </div>
+
+    <div class="col-12" [hidden]="iFrameType !== 'embed'">
+      <h3>embed</h3>
+      <embed #childFrame src="http://localhost:3000" width=500 height=500 />
+
     </div>
 
 <!--    https://www.youtube.com/embed/gv7hFegk14o -->
